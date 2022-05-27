@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block body_block %}
+{% load static %}
+<style>
+  body{
+    background-image: url('{{ STATIC_URL }}static/pics/741514.JPG');
+    color: #FDFEFE;
+  }
+</style>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}"/>
+    <h1 id="main-header" style="text-align:center; font-size: 70px;";>SPLITWISE</h1>
+
+
+    {% if user.is_authenticated %}
+
+        <h2 style="text-align:center">Welcome {{ user.username }} to your homepage!</h2>
+        <br></br>
+        <h3 style="font-family:'PT Sans', sans-serif;">Transaction Details:</h3>
+        <div class="row">
+          <div class="col-md-12">
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Sr.No</th>
+                  <th>Name</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for i in datap %}
+                  <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{i.person2}}</td>
+                    <td>{{i.amount}}</td>
+                  </tr>
+                {%endfor%}
+                {% for i in dataopp %}
+                  <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{i.person1}}</td>
+                    <td>-{{i.amount}}</td>
+                  </tr>
+                {%endfor%}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+    {% else %}
+        <h2 style="text-align:center;font-family:'PT Sans', sans-serif;">Welcome to the site!</h2>
+        <p id="body_info">
+        Greetings from the Splitwise Team,
+        </p>
+        <p id="body_info">
+        Ever had to face the difficulty of splitting bills while at dinner?
+        </p>
+        <p id="body_info">
+        Worry no more, on the Splitwise webapp, you and your friends can signup for free and split bills on the go.
+        </p>
+        <p id="body_info">
+        All transactions are stored and calculations are done within the app.
+        </p>
+        <p id="body_info">
+        Our highlight feature is Settle. It automatically readjusts the amounts amongst your friends and settles the amounts.
+        </p>
+        <p id="body_info">
+        For Example-
+        <div id="body_info"> If A B C are three friends</div>
+      </p>
+      <p>
+
+      </p>
+      <p id="body_info">
+        A owes B 100 dollars
+      </p>
+      <p id="body_info">
+        B owes C 100 dollars
+        </p>
+        <p id="body_info">
+        Then within a click our proprietary algorithm adjusts these amounts such that A now will owe C 100 dollars
+        </p>
+        <p id="body_info">
+        Note: This works only if all the parties are part of each others friends list
+      </p>
+      <p id="body_info">
+              Amounts being settled have to be exact.
+            </p>
+        <p id="body_info">
+
+        Sign Up to Get Started!
+        </p>
+    {% endif %}
+
+
+{% endblock %}

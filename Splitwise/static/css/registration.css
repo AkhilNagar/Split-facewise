@@ -1,0 +1,57 @@
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&family=PT+Serif:ital@0;1&display=swap');
+
+
+
+
+  #main-header{
+    font-family: 'PT Serif', sans-serif;
+  }
+
+  #body_info{
+    font-family: 'PT Sans', sans-serif;
+  }
+
+  #save{
+    margin-top: 20px;
+    background-color: white;
+    color: black;
+    border: 2px solid #AED6F1 ;
+    transition-duration: 0.4s;
+  }
+
+  #save:hover{
+    background-color: #AED6F1 ;
+    color: black;
+  }
+
+
+  #id_email{
+    border-radius: 10px;
+  }
+
+  #id_password{
+    border-radius: 10px;
+  }
+
+  #id_username{
+    border-radius: 10px;
+  }
+
+  label{
+     color: whitesmoke;
+  }
+
+  .form-div{
+    margin: auto;
+    width: 25%;
+    padding-top: 20px;
+  }
+
+  .button{
+    text-align:center;
+  }
+
+
+</style>

@@ -1,0 +1,11 @@
+<style>
+
+.topnav a {
+  background-image: url('{{ STATIC_URL }}static/pics/741514.JPG');
+  color: #FDFEFE;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+</style>

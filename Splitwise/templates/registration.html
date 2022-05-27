@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body_block %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/registration.css' %}"/>
+<style media="screen">
+  .bg-img {
+    background-image: url('../../static/pics/741514.jpg');
+    color: whitesmoke
+  }
+  body{
+    background-image: url('../../static/pics/741514.jpg');
+    color: black;
+
+  }
+</style>
+<body>
+<div class="bg-img">
+      {% if user.is_authenticated %}
+      <h1>You are already logged in</h1>
+      {% else %}
+
+      {% if registered %}
+        <h1 id="main-header"  style="text-align:center; font-size: 30px; color: wheat;";>Thank you for registering!</h1>
+      {% else %}
+        <h1 id="main-header"  style="text-align:center; font-size: 30px; color: wheat;";>Register Here</h1>
+        <br></br>
+        <h3 id="body_info" style="text-align:center;">Fill out the form.</h3>
+        <body>
+
+        <form enctype="multipart/form-data" class="signup" method="POST" style="font-family: 'PT Sans', sans-serif; color:black; background-image: url('{{ STATIC_URL }}static/pics/background.JPG');">
+          {% csrf_token %}
+          <div class="form-div">
+            <div class="form_content">
+                <label for="id_username">Username :</label>
+                {{ user_form.username }}
+            </div>
+
+          </div>
+
+          <div class="form-div">
+            <div class="form_content">
+                <label for="id_image">Profile :</label>
+                {% csrf_token %}
+                {{ profile_form.profile_pic }}
+            </div>
+          </div>
+
+          <div class="form-div">
+            <div class="form_content">
+                <label for="id_email">Email :</label>
+                {{ user_form.email }}
+            </div>
+          </div>
+
+
+
+          <div class="form-div">
+            <div class="form_content">
+                <label for="id_password">Password :</label>
+                {{ user_form.password }}
+            </div>
+          </div>
+        <div class="button">
+          <input type="submit" name="" value="Register" id="save" style="text-align:center;">
+        </div>
+
+        </form>
+        </body>
+      {% endif %}
+      {% endif %}
+</div>
+</body>
+{% endblock %}

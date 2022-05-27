@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body_block %}
+<style media="screen">
+  .bg-img{
+    background-image: url('../../static/pics/741514.jpg');
+    background-position: center;
+    background-size: cover;
+  }
+</style>
+<link rel="stylesheet" type="text/css" href="{% static 'css/transaction.css' %}"/>
+  <body class="bg-img">
+        <h1 id="main-header" style="text-align:center; font-size: 20px; color:wheat";>TRANSACTION FORM</h1>
+      <div class="left-half">
+        <h1 id="body_info" style="text-align:center; font-size: 20px; color:whitesmoke">Enter the details:</h1>
+
+        <form enctype="multipart/form-data" method="POST" class="post-form">
+          {% csrf_token %}
+
+          <div class="form-div">
+            <div class="form_content">
+                <label for="id_amount">Amount :</label>
+                {{ transact_form.amount }}
+            </div>
+
+          </div>
+          <div class="form-div">
+            <div class="form_content">
+                <label for="id_picpeople">Upload group picture :</label>
+                {{ transact_form.grp_pic }}
+                <p style="color:white">Upload a picture of the group to be divided amongst</p>
+            </div>
+          </div>
+
+          <div class="form-div">
+            <div class="form_content">
+                <label for="id_people">Add people manually:</label>
+                {{ transact_form.people }}
+                <p style="color:white">Enter the usernames separated by a comma</p>
+            </div>
+          </div>
+
+
+          <div class="form-div">
+            <div class="form_content">
+                <label for="id_reason">Reason :</label>
+                {{ transact_form.reason }}
+            </div>
+          </div>
+
+
+
+          <div class="form-button">
+            <button id = "save" type='Submit' class="save btn btn-default">Save</button>
+          </div>
+
+        </form>
+
+      <div class="right-half">
+        <h3 class='body_info'>Your Friends (Usernames):</h3>
+        <ul>
+          {%for i in datap%}
+          <li id = "friends" class='body_info'>{{i.person2}}</li>
+          {%endfor%}
+          {%for i in dataopp%}
+          <li id ="friends" fclass='body_info'>{{i.person1}}</li>
+          {%endfor%}
+        </ul>
+      </div>
+  </body>
+
+
+{% endblock %}
