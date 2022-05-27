@@ -1,0 +1,39 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital@1&family=PT+Serif:ital@0;1&display=swap');
+
+#main-header {
+  font-family: 'PT Serif', sans-serif;
+  color: wheat
+}
+
+.bg-img{
+  background-image: url("../../staticfiles/pics/741514.c11a4173df83.jpg");
+  color: whitesmoke;
+}
+
+body{
+
+  background-image: url("../../staticfiles/pics/741514.c11a4173df83.jpg");
+  color: black;
+
+}
+
+#body_info{
+  color: whitesmoke;
+}
+
+#save{
+  margin-top: 20px;
+  background-color: white;
+  color: black;
+  border: 2px solid #D7BDE2 ;
+  transition-duration: 0.4s;
+}
+
+#save:hover{
+  background-color: #D7BDE2 ;
+  color: black;
+}
+
+</style>

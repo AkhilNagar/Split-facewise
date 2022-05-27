@@ -1,0 +1,52 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital@1&family=PT+Serif:ital@0;1&display=swap');
+
+  
+
+  #main-header {
+    font-family: 'PT Serif', sans-serif;
+  }
+
+  table {
+    font-family: 'PT Sans', sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+
+  #body_info{
+    font-family: 'PT Sans', sans-serif;
+    color:whitesmoke
+  }
+
+  #save{
+    margin-top: 20px;
+    background-color: white;
+    color: black;
+    border: 2px solid #ABEBC6;
+    transition-duration: 0.4s;
+  }
+
+  #save:hover{
+    background-color: #ABEBC6;
+    color: black;
+  }
+
+
+  #id_person_name{
+    border-radius: 10px;
+  }
+
+  label{
+     color: whitesmoke;
+  }
+
+  .row{
+    color:whitesmoke
+  }
