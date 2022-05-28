@@ -13,7 +13,7 @@
   <a href="#problem-statement">Problem Statement</a> •
   <a href="#key-features">Key Features</a> •
   <a href="#pre-requisites">Pre-Requisites</a> •
-  <a href="#installation">Installation</a> •
+  <a href="#run-django">Run Django</a> •
   <a href="#tech-stack">Tech Stack</a> •
   <a href="#user-interface">User Interface</a> •
   <a href="#license">Downfalls</a>
@@ -55,31 +55,46 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and py
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/amitmerchant1990/electron-markdownify
+$ git clone [https link]
 
 # Install Python
 $ cd electron-markdownify
 
 # Create a Virtual Env
-$ npm install
+$ virtualenv2 --no-site-packages env
+
+# Activate the Environment
+$ source env/bin/activate
 
 # Install cmake
 $ pip install cmake
 
 # Install Dlib
 $ pip install dlib
-Dlib package is present in the repository
-$ pip install [DIR_NAME]
+#Dlib package is present in the repository
+$ pip install dlib
 
 # Install all other Requirements
 $pip install requirements.txt
 
 
+
 ```
 
-## Installation
+## Run Django
 
-Markdownify is an [emailware](https://en.wiktionary.org/wiki/emailware). Meaning, if you liked using this app or it has helped you in any way, I'd like you send me an email at <bullredeyes@gmail.com> about anything you'd want to say about this software. I'd really appreciate it!
+```bash
+# Activate the Environment
+$ source env/bin/activate
+
+# Change Directory to Project folder
+(env)$ cd Splitwise
+
+#Run Django Server on localhost
+(env)$ python manage.py runserver
+
+Navigate to [localhost](http://127.0.0.1:8000/)
+```
 
 ## Tech Stack
 
