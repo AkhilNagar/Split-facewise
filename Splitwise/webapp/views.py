@@ -16,21 +16,25 @@ from webapp import face_rec
 import face_recognition
 import threading
 import time
+import cv2
 
-# config={
-#     "apiKey": "AIzaSyDdxlfh7Qb_8fOiJn8hWbaqaSQT8_n-7Yc",
-#     "authDomain": "facerecognition-9506e.firebaseapp.com",
-#     "projectId": "facerecognition-9506e",
-#     "storageBucket": "facerecognition-9506e.appspot.com",
-#     "messagingSenderId": "713869339014",
-#     "appId": "1:713869339014:web:816b67e5f750eac2f2a407",
-#     "measurementId": "G-05MQESTD98",
-#     "databaseURL": "https://facerecognition-9506e-default-rtdb.firebaseio.com/"
-#
-# }
-# firebase=pyrebase.initialize_app(config)
-# authe = firebase.auth()
-# database=firebase.database()
+config={
+    "apiKey": "AIzaSyDdxlfh7Qb_8fOiJn8hWbaqaSQT8_n-7Yc",
+    "authDomain": "facerecognition-9506e.firebaseapp.com",
+    "projectId": "facerecognition-9506e",
+    "storageBucket": "facerecognition-9506e.appspot.com",
+    "messagingSenderId": "713869339014",
+    "appId": "1:713869339014:web:816b67e5f750eac2f2a407",
+    "measurementId": "G-05MQESTD98",
+    "databaseURL": "https://facerecognition-9506e-default-rtdb.firebaseio.com/",
+    "serviceAccount":"serviceAccount.json",
+
+
+}
+firebase=pyrebase.initialize_app(config)
+authe = firebase.auth()
+database=firebase.database()
+storage=firebase.storage()
 
 #import all the views eg-from django.view.generic import(TemplateView,ListView)
 
@@ -122,6 +126,9 @@ def register(request):
             profile1.face_encode=encodejson
             profile1.save()
             registered=True
+            print(img)
+            #Adds to firebase
+            #storage.child("face.jpg").put(img)
             return redirect('index')
 
     else:
@@ -159,6 +166,7 @@ def transaction(request):
     numpeople=0
     amt=0
     progress=False
+
     if request.method == "POST":
         transact_form=TransactionForm(request.POST,request.FILES)
         print(transact_form.errors)
@@ -168,6 +176,7 @@ def transaction(request):
             if 'grp_pic' in request.FILES:
                 print("Found grp_pic")
                 img=request.FILES['grp_pic']
+                ifimage=True
             progress=True
             person1_=request.user.get_username()
             #now = date.datetime.now()
@@ -254,7 +263,16 @@ def transaction(request):
         return render(request,'transaction.html',{'transact_form':transact_form,'progress':progress,"datap":datap,"dataopp":dataopp})
 
 
+def display(request):
+    img=""
+    userlist=[]
+    if request.method == "POST":
+        img = request.FILES['img']
 
+        userlist=face_rec.showface(img)
+        print(img)
+
+    return render(request,'image.html',{"img":img,"userlist":userlist})
 
 
 

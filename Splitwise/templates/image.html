@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+{% block body_block %}
+
+<html lang="en" dir="ltr">
+<style media="screen">
+  .bg-img{
+    background-image: url('../../static/pics/741514.jpg');
+    background-position: center;
+    background-size: cover;
+  }
+  body{
+    background-image: url('../../static/pics/741514.jpg');
+    color: #FDFEFE;
+  }
+</style>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <center>
+    <h1>Upload your image to test faces</h1>
+    <p>Note: If all faces arent being detected please try another picture </p>
+    <br>
+
+    <form enctype="multipart/form-data" class="post-form" action="{% url 'display' %}" method="post">
+      {% csrf_token %}
+      <input type="file" id="img" name="img" accept="image/*">
+      <br><br>
+
+      <div class="form-button">
+        <button id = "save" type='Submit' class="save btn btn-default">Save</button>
+      </div>
+    </form>
+    <br><br>
+
+    {%for item in userlist%}
+        <li>{{item}} is present</li>
+    {% endfor %}
+
+    <br><br>
+    <br><br>
+    <img src="{% static 'output.jpg' %}" width="900" height="900" alt=""/>
+    </center>
+
+  </body>
+</html>
+
+{% endblock %}

@@ -3,7 +3,7 @@
 {% block body_block %}
 <style media="screen">
   .bg-img{
-    background-image: url('../../staticfiles/pics/741514.jpg');
+    background-image: url('../../static/pics/741514.jpg');
     background-position: center;
     background-size: cover;
   }
@@ -17,13 +17,10 @@
         <form enctype="multipart/form-data" method="POST" class="post-form">
           {% csrf_token %}
 
-          <div class="form-div">
-            <div class="form_content">
-                <label for="id_amount">Amount :</label>
-                {{ transact_form.amount }}
-            </div>
-
-          </div>
+          <center>
+          <button id = "save" type='Submit' class="save btn btn-default" ><a href="{% url 'display'  %}  " target ="_blank"> Test your image </a></button>
+          </center>
+          
           <div class="form-div">
             <div class="form_content">
                 <label for="id_picpeople">Upload group picture :</label>
@@ -31,6 +28,17 @@
                 <p style="color:white">Upload a picture of the group to be divided amongst</p>
             </div>
           </div>
+
+
+
+          <div class="form-div">
+            <div class="form_content">
+                <label for="id_amount">Amount :</label>
+                {{ transact_form.amount }}
+            </div>
+
+          </div>
+
 
           <div class="form-div">
             <div class="form_content">
