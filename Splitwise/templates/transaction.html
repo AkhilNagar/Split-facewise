@@ -13,14 +13,14 @@
         <h1 id="main-header" style="text-align:center; font-size: 20px; color:wheat";>TRANSACTION FORM</h1>
       <div class="left-half">
         <h1 id="body_info" style="text-align:center; font-size: 20px; color:whitesmoke">Enter the details:</h1>
-
+        <center>
         <form enctype="multipart/form-data" method="POST" class="post-form">
           {% csrf_token %}
 
-          <center>
+
           <button id = "save" type='Submit' class="save btn btn-default" ><a href="{% url 'display'  %}  " target ="_blank"> Test your image </a></button>
           </center>
-          
+
           <div class="form-div">
             <div class="form_content">
                 <label for="id_picpeople">Upload group picture :</label>
