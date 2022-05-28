@@ -19,9 +19,9 @@
   <a href="#license">Downfalls</a>
 </p>
 
-![akhil](https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.gif)
+![screenshot](https://github.com/AkhilNagar/Split-facewise/blob/master/Screenshots/homepage.jpg)
 
-## Problem Statement
+# Problem Statement
 Ever had to face the difficulty of splitting bills while at dinner?
 <br>
 Worry no more, on the Split-Facewise webapp, you and your friends can signup for free and split bills on the go.
@@ -31,7 +31,7 @@ Upload a profile picture, to verify yourself
 To split a bill, just add a group picture. We automatically scan and recognise all faces present and correctly split the amount.
 
 
-## Key Features
+# Key Features
 * Login Logout authentication
   - Secured account using password hashing
   - Add a profile pic which will be stored on firebase as well as locally
@@ -45,7 +45,7 @@ To split a bill, just add a group picture. We automatically scan and recognise a
 
 
 
-## Pre-Requisites
+# Pre-Requisites
 
 > **Note**
 >For Windows insallation only
@@ -55,10 +55,8 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and py
 
 ```bash
 # Clone this repository
-$ git clone [https link]
+$ git clone https://github.com/AkhilNagar/Split-facewise.git
 
-# Install Python
-$ cd electron-markdownify
 
 # Create a Virtual Env
 $ virtualenv2 --no-site-packages env
@@ -72,7 +70,7 @@ $ pip install cmake
 # Install Dlib
 $ pip install dlib
 #Dlib package is present in the repository
-$ pip install dlib
+$ pip install https://github.com/AkhilNagar/Split-facewise/blob/master/dlib-19.19.0-cp38-cp38-win_amd64.whl
 
 # Install all other Requirements
 $pip install requirements.txt
@@ -81,7 +79,7 @@ $pip install requirements.txt
 
 ```
 
-## Run Django
+# Run Django
 
 ```bash
 # Activate the Environment
@@ -96,7 +94,7 @@ $ source env/bin/activate
 Navigate to [localhost](http://127.0.0.1:8000/)
 ```
 
-## Tech Stack
+# Tech Stack
 
 This software uses the following open source packages:
 
@@ -106,13 +104,26 @@ This software uses the following open source packages:
 - [TensorFlow](https://www.tensorflow.org/)
 
 
-## User Interface
+# User Interface
 
-Screenshots
+<h2>Test image for faces </h2>
 
-## Downfalls
+![screenshot](https://github.com/AkhilNagar/Split-facewise/blob/master/Screenshots/Imagetesting.jpg)
 
-Heroku deployment
+<h2>Add a Transaction </h2>
+
+![screenshot](https://github.com/AkhilNagar/Split-facewise/blob/master/Screenshots/transaction.jpg)
+
+# Downfalls
+
+-Heroku deployment
+
+<p>Dlib is a very large package, thus deploying to heroku was an issue.
+ <br>
+To dockerize my webapp was a solution but due to time constraints could not implement
+</p>
+
+![screenshot](https://github.com/AkhilNagar/Split-facewise/blob/master/Screenshots/heroku%20issue.jpg)
 
 
 ---
