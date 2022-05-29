@@ -166,6 +166,7 @@ def transaction(request):
     numpeople=0
     amt=0
     progress=False
+    ifimage=False
 
     if request.method == "POST":
         transact_form=TransactionForm(request.POST,request.FILES)
@@ -188,8 +189,11 @@ def transaction(request):
             #user_list=face_rec.recognise_faces(img)
             #If preview is clicked show Images
             # Add more names manually
+            if ifimage == True:
+                user_list=face_rec.compare(img)
+            else:
+                user_list=[]
 
-            user_list=face_rec.compare(img)
             if(request.user.get_username() in user_list):
                 user_list.remove(request.user.get_username())
             a=0
@@ -238,15 +242,20 @@ def transaction(request):
                             obj.amount=famt1
 
 
-
-                    obj.grp_pic=img
+                    if ifimage==True:
+                        obj.grp_pic=img
                     obj.save()
 
                     t_pair_count=0
                 elif t_pair_count==0:
-                    transact=Transaction_Pairs(person1=person1_,person2=person2_,amount=contrib,grp_pic=img)
-                    transact.save()
-                    t_pair_count=0
+                    if ifimage==True:
+                        transact=Transaction_Pairs(person1=person1_,person2=person2_,amount=contrib,grp_pic=img)
+                        transact.save()
+                        t_pair_count=0
+                    else:
+                        transact=Transaction_Pairs(person1=person1_,person2=person2_,amount=contrib)
+                        transact.save()
+                        t_pair_count=0
                 else:
                     break
                 history=Transaction_history(person1=person1_,person2=person2_,reason=reason,amount=contrib)

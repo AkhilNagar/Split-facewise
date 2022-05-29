@@ -125,7 +125,7 @@ def showface(img):
         img1 = ImageDraw.Draw(pil_image)
 
         # We set outline color as red and width of 4
-        img1.rectangle(shape, outline ="red", width=10)
+        img1.rectangle(shape, outline ="red", width=6)
 
     # Save image
     pil_image.save("static/output.jpg")
