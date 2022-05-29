@@ -32,16 +32,17 @@ To split a bill, just add a group picture. We automatically scan and recognise a
 
 
 # Key Features
-* Login Logout authentication
+* Login Logout **authentication**
   - Secured account using password hashing
   - Add a profile pic which will be stored on firebase as well as locally
   - Credentials are stored in a sqlite3 database
-* Detects all faces and recognises people who are registered on the webapp using face_recognition library
-* The Multi-user system is able to handle as many users and transactions
-* Each Transaction has a unique id and timestamp, every user is able to see his/her balances
-* Search feature for transactions
-* Update feature to revise the balance for people who have paid you back either partially or entirely
-* Settle Feature to reduce number of redundant payments amongst your friend circles
+* Detects all faces and recognises people who are registered on the webapp using **face_recognition** library
+* The **Multi-user system** is able to handle as many users and transactions
+* Each Transaction has a unique id and timestamp
+* Every user is able to see his/her balances and **transaction history**
+* Group transactions by username
+* **Update** feature to revise the balance for people who have paid you back either partially or entirely
+* **Settle** Feature to reduce number of redundant payments amongst your friend circles
 
 
 
@@ -106,13 +107,27 @@ This software uses the following open source packages:
 
 # User Interface
 
+<h2>User Dashboard </h2>
+
+![screenshot](https://github.com/AkhilNagar/Split-facewise/blob/master/Screenshots/user_home.jpg)
+
 <h2>Test image for faces </h2>
 
 ![screenshot](https://github.com/AkhilNagar/Split-facewise/blob/master/Screenshots/Imagetesting.jpg)
 
+
 <h2>Add a Transaction </h2>
 
 ![screenshot](https://github.com/AkhilNagar/Split-facewise/blob/master/Screenshots/transaction.jpg)
+
+<h2>Transaction History </h2>
+
+![screenshot](https://github.com/AkhilNagar/Split-facewise/blob/master/Screenshots/history.jpg)
+
+
+# Code Overview
+
+![screenshot](https://github.com/AkhilNagar/Split-facewise/blob/master/Screenshots/modular_code.jpg)
 
 # Downfalls
 
