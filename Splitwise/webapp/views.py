@@ -18,6 +18,8 @@ import threading
 import time
 import cv2
 
+
+#FIREBASE CONNECTION
 config={
     "apiKey": "AIzaSyDdxlfh7Qb_8fOiJn8hWbaqaSQT8_n-7Yc",
     "authDomain": "facerecognition-9506e.firebaseapp.com",
@@ -38,6 +40,43 @@ storage=firebase.storage()
 
 #import all the views eg-from django.view.generic import(TemplateView,ListView)
 
+
+
+
+
+@login_required
+def special(request):
+    return HttpResponse("You are logged in")
+
+def user_login(request):
+
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(username=username,password=password)
+
+        if user:
+            if user.is_active:
+                login(request,user)
+                return HttpResponseRedirect(reverse('index'))
+
+            else:
+                return HttpResponse("ACCOUNT NOT ACTIVE")
+
+        else:
+            print("Someone tried to login and failed!")
+            print("Username: {} and password: {}".format(username,password))
+            return HttpResponse("Invalid login details supplied!")
+
+    else:
+        return render(request, 'login.html', {})
+
+@login_required
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('index'))
+#HOME PAGE
 def index(request):
     global person_n
 
@@ -59,38 +98,8 @@ def index(request):
     # print(day)
 
     return render(request,'index.html',{"datap":datap,"dataopp":dataopp})
-'''
-    if request.GET.get('mybtn') or request.GET.get('mybtn1')  and person_n !="":
-        amtr=int(request.GET.get('mytextbox'))
-        obj=(Transaction_Pairs.objects.get(person1=request.user.get_username(),person2=person_n,) if Transaction_Pairs.objects.filter(person1=person_n,person2=request.user.get_username()).count()==0 else Transaction_Pairs.objects.get(person1=person_n,person2=request.user.get_username()))
-        if request.GET.get('mybtn') and amtr!=0 and obj.amount!=0:
-            #last if is so the value doesnt go from money owed 0 to negative
-            obj.amount-=amtr
-        elif request.GET.get('mybtn') and amtr==0:
-            return HttpResponse("Enter an amount!") #I want it to be an alert
 
-        elif request.GET.get('mybtn1'):
-            obj.amount=0
-        obj.save()
-
-
-
-        datap= Transaction_Pairs.objects.filter(person1=request.user.get_username())
-        dataopp= Transaction_Pairs.objects.filter(person2=request.user.get_username())
-        person_n=""
-        '''
-
-
-@login_required
-def special(request):
-    return HttpResponse("You are logged in")
-
-@login_required
-def user_logout(request):
-    logout(request)
-    return HttpResponseRedirect(reverse('index'))
-
-
+#REGISTRATION FUNCTION
 def register(request):
 
     registered=False
@@ -137,31 +146,7 @@ def register(request):
     return render(request,'registration.html',{'user_form':user_form,'registered':registered, 'profile_form':profile_form,})
     #add key value pair 'profile_form':profile_form,
 
-def user_login(request):
-
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-
-        user = authenticate(username=username,password=password)
-
-        if user:
-            if user.is_active:
-                login(request,user)
-                return HttpResponseRedirect(reverse('index'))
-
-            else:
-                return HttpResponse("ACCOUNT NOT ACTIVE")
-
-        else:
-            print("Someone tried to login and failed!")
-            print("Username: {} and password: {}".format(username,password))
-            return HttpResponse("Invalid login details supplied!")
-
-    else:
-        return render(request, 'login.html', {})
-
-
+#TRANSACTION
 def transaction(request):
     numpeople=0
     amt=0
@@ -271,7 +256,7 @@ def transaction(request):
         dataopp= Transaction_Pairs.objects.filter(person2=request.user.get_username())
         return render(request,'transaction.html',{'transact_form':transact_form,'progress':progress,"datap":datap,"dataopp":dataopp})
 
-
+#DISPLAY DETECTED IMAGES
 def display(request):
     img=""
     userlist=[]
@@ -283,10 +268,9 @@ def display(request):
 
     return render(request,'image.html',{"img":img,"userlist":userlist})
 
-
-
 person_n=""
 
+#SHOWS TRANSACTION HISTORY
 def history(request):
     global person_n
 
@@ -330,7 +314,7 @@ def history(request):
         famt=-float(famt1.amount)
     return render(request,'history.html',{"flag":flag,"flag1":flag1, "dataopp":dataopp,"person_n":person_n,"famount":famt,"datah":datah,"transact_history":transact_history})
 
-
+#BALANCES ACCOUNTS
 def nullify(request):
     global person_n
     '''
@@ -379,6 +363,7 @@ def nullify(request):
         person_n=""
         return redirect('index')
 
+#REDUCE NET NUMBER OF TRANSACTIONS AMONGST FRIEND GROUPS
 def settle(request):
 
     if request.method=='GET':

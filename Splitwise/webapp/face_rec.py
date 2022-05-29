@@ -7,12 +7,8 @@ import numpy as np
 from PIL import Image
 from PIL import ImageDraw
 
-class NumpyArrayEncoder(JSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, numpy.ndarray):
-            return obj.tolist()
-        return JSONEncoder.default(self, obj)
 
+# CREATES EMBEDDINGS FOR EVERY IMAGE PASSED
 def create_embed(name):
 
     data= UserProfile.objects.get(users=name)
@@ -23,23 +19,7 @@ def create_embed(name):
     encodejson = json.dumps(numpyData, cls=NumpyArrayEncoder)
     return encodejson
 
-#Initialises list with all faces from db
-def face_list():
-    known_names = []
-    known_name_encodings = []
-    obj=UserProfile.objects.filter()
-    n=UserProfile.objects.filter().count()
-    for i in range(0,n):
-        query=obj[i:i+1]
-        obj1=query.get()
-        known_names.append(obj1.users)
-        decodedArrays = json.loads(obj1.face_encode)
-        finalencode = numpy.asarray(decodedArrays["array"])
-        known_name_encodings.append(finalencode)
-    # print(known_names)
-    # print(type(known_name_encodings[0]))
-#Compares faces with the list created
-
+#LOOKS FOR PEOPLE IN GROUP IMAGE AND COMPARES WITH USER PROFILES
 def compare(img):
     #img is the group image
     userlist=[]
@@ -76,6 +56,7 @@ def compare(img):
 
     return userlist
 
+#TEST FEATURE TO CHECK DETECTION AND RECOGNITION
 def showface(img):
     image = face_recognition.load_image_file(img)
     userlist=[]
@@ -130,3 +111,10 @@ def showface(img):
     # Save image
     pil_image.save("static/output.jpg")
     return userlist
+
+#CONVERTS NUMPY ARRAY TO JSON FORMAT
+class NumpyArrayEncoder(JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, numpy.ndarray):
+            return obj.tolist()
+        return JSONEncoder.default(self, obj)
